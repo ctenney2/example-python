@@ -1,7 +1,7 @@
 name: devops               # name of the Workflow
 on: [push]                 # Trigger 
 jobs:                      # Jobs to run
-  check-bats-version:      # Job
+  devops:      # Job
     runs-on: ubuntu-latest # OS to run
     steps:                 # Steps in this job
       - uses: actions/checkout@v2     # Uses a predefined action from github, Clones the repo (required)
@@ -32,7 +32,7 @@ jobs:                      # Jobs to run
         uses: actions/upload-artifact@v3
         with:
           name: pytest-cov
-          path: junit/test-results.xml
+          path: coverage.xml
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
 # Add bandit
