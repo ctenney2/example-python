@@ -1,0 +1,4 @@
+###### Requirements without Version Specifiers ######
+pytest
+pytest-cov
+flake8
