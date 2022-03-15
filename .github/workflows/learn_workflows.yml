@@ -1,12 +1,12 @@
-name: learn-github-actions
-on: [push]
-jobs:
-  check-bats-version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+name: learn-github-actions # name of the Action
+on: [push]                 # Trigger 
+jobs:                      # Jobs to run
+  check-bats-version:      # Job
+    runs-on: ubuntu-latest # OS to run
+    steps:                 # Steps in this job
+      - uses: actions/checkout@v2    # Uses a predefined action from github, Clones the repo (required)
+      - uses: actions/setup-node@v2  # Adds npm and node to the path
         with:
           node-version: '14'
-      - run: npm install -g bats
+      - run: npm install -g bats     # Execude the line in bahs. Steps/scrips inside the OS
       - run: bats -v

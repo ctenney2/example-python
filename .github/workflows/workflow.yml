@@ -1,0 +1,12 @@
+name: devops               # name of the Workflow
+on: [push]                 # Trigger 
+jobs:                      # Jobs to run
+  check-bats-version:      # Job
+    runs-on: ubuntu-latest # OS to run
+    steps:                 # Steps in this job
+      - uses: actions/checkout@v2     # Uses a predefined action from github, Clones the repo (required)
+      - uses: actions/setup-python@v2 # Set up python in the envirement. https://github.com/actions/setup-python
+        with:
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+      - run: python --version 
+      - rub: bandit --version 
