@@ -32,7 +32,9 @@ jobs:                      # Jobs to run
         uses: actions/upload-artifact@v3
         with:
           name: pytest-cov
-          path: coverage.xml
+          path: |
+            coverage.xml
+            htmlcov
         # Use always() to always run this step to publish test results when there are test failures
         if: ${{ always() }}
 # Add bandit
