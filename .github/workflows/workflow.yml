@@ -20,7 +20,7 @@ jobs:                      # Jobs to run
       - name: Test with pytest
         run: |
           pytest --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
-          ls
+        # Create junit unittest output. -cov=. says to look at the entire path for coverage https://pytest-cov.readthedocs.io/en/latest/config.html
       - name: Upload pytest test results
         uses: actions/upload-artifact@v3
         with:
