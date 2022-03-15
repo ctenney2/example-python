@@ -1,0 +1,41 @@
+name: devops               # name of the Workflow
+on: [push]                 # Trigger 
+jobs:                      # Jobs to run
+  devops:      # Job
+    runs-on: ubuntu-latest # OS to run
+    steps:                 # Steps in this job
+      - uses: actions/checkout@v2     # Uses a predefined action from github, Clones the repo (required)
+      - uses: actions/setup-python@v2 # Set up python in the envirement. https://github.com/actions/setup-python
+        with:
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+      - run: python --version 
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Lint with flake8
+        run: |
+          flake8 .
+        continue-on-error: true
+      - name: Test with pytest
+        run: |
+          pytest --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
+        # Create junit unittest output. -cov=. says to look at the entire path for coverage https://pytest-cov.readthedocs.io/en/latest/config.html
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: pytest-results
+          path: junit/test-results.xml
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
+      - name: Upload coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: pytest-cov
+          path: |
+            coverage.xml
+            htmlcov
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
+# Add bandit
+# Add black
