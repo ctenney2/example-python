@@ -17,6 +17,3 @@ The workflow yml controls the action run. To use githubs hosted runner use
 You can specify what image with
 
 `container: image:tag`, otherwise the default OS image is used. 
-
-
-
