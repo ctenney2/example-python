@@ -2,7 +2,7 @@ name: devops               # name of the Workflow
 on: [push]                 # Trigger 
 jobs:                      # Jobs to run
   devops:      # Job
-    runs-on: ubuntu-latest # OS to run
+    runs-on: ubuntu-latest # Github runner to run
     steps:                 # Steps in this job
       - uses: actions/checkout@v2     # Uses a predefined action from github, Clones the repo (required)
       - uses: actions/setup-python@v2 # Set up python in the envirement. https://github.com/actions/setup-python
