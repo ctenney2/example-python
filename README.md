@@ -9,5 +9,14 @@ For python see https://docs.github.com/en/actions/automating-builds-and-tests/bu
 
 It is recommneded to always use the setup-python action
 
-## Actions
+## Workflow
+
+The workflow yml controls the action run. To use githubs hosted runner use 
+`runs-on: ubuntu-latest`
+
+You can specify what image with
+
+`container: image:tag`, otherwise the default OS image is used. 
+
+
 
